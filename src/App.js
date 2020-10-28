@@ -1,3 +1,5 @@
+import AppRouter from "./routers/AppRouter";
+
 export default function App() {
-     return <div>Hellsdfo</div>;
+     return <AppRouter></AppRouter>;
 }
