@@ -4,12 +4,9 @@ import { DispatchContext, StateContext } from "../context/StoreProvider";
 
 import { Link } from "react-router-dom";
 
-// link to About
-
 export default function HomePage() {
      const dispatch = useContext(DispatchContext);
      const state = useContext(StateContext);
-
      return (
           <div>
                <h1>HomePage</h1>
