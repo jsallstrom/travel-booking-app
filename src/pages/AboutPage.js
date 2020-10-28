@@ -4,15 +4,12 @@ import { DispatchContext, StateContext } from "../context/StoreProvider";
 
 import { Link } from "react-router-dom";
 
-// link to About
-
-export default function HomePage() {
+export default function AboutPage() {
      const dispatch = useContext(DispatchContext);
      const state = useContext(StateContext);
-
      return (
           <div>
-               <h1>HomePage</h1>
+               <h1>AboutPage</h1>
 
                {state.theme}
                <button
@@ -23,7 +20,7 @@ export default function HomePage() {
                     toggle theme
                </button>
 
-               <Link to="/about">About</Link>
+               <Link to="/">Home</Link>
           </div>
      );
 }
