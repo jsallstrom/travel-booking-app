@@ -6,7 +6,8 @@ export const StateContext = createContext();
 export const DispatchContext = createContext();
 
 const initialState = {
-     theme: "light",
+     availableBookings: [],
+     customerBookings: [],
 };
 
 const StoreProvider = ({ children }) => {
