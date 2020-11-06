@@ -11,15 +11,6 @@ export default function AboutPage() {
           <div>
                <h1>AboutPage</h1>
 
-               {state.theme}
-               <button
-                    onClick={() => {
-                         dispatch({ type: "TOGGLE_THEME" });
-                    }}
-               >
-                    toggle theme
-               </button>
-
                <Link to="/">Home</Link>
           </div>
      );

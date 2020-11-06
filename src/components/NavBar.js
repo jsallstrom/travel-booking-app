@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 
 import styled, { css } from "styled-components";
 
+import HamburgerMenuNavbar from "./mobile/HamburgerMenuNavbar";
+
 const StyledNavbar = styled.nav`
      display: flex;
      flex-direction: row;
@@ -16,10 +18,6 @@ const StyledNavbar = styled.nav`
      position: sticky;
      top: 0;
      z-index: 10;
-
-     @media (max-width: 786px) {
-          flex-direction: column;
-     }
 `;
 
 const NavBrand = styled(Link)`
@@ -45,6 +43,10 @@ const NavItems = styled.ul`
 
      display: flex;
      align-items: center;
+
+     @media (max-width: 786px) {
+          opacity: 0;
+     }
 `;
 
 const NavLink = styled(Link)`
@@ -57,16 +59,25 @@ const NavLink = styled(Link)`
      border: none;
 `;
 
+/**
+ * Import HamburgerMenu
+ * NavItems shall go invisable when under 786px or something
+ * Then HamburgerMenu shall arise
+ *
+ *
+ */
+
 export default function NavBar() {
      return (
           <StyledNavbar>
-               <NavBrand to="/">Sacandinavian Adventures</NavBrand>
+               <NavBrand to="/">Scandinavian Adventures</NavBrand>
 
                <NavItems>
                     <NavLink to="/experiences">Experiences</NavLink>
                     <NavLink to="/company">Company</NavLink>
                     <NavLink to="/support">Support</NavLink>
                </NavItems>
+               <HamburgerMenuNavbar></HamburgerMenuNavbar>
           </StyledNavbar>
      );
 }

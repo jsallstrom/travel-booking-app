@@ -6,9 +6,8 @@ export const StateContext = createContext();
 export const DispatchContext = createContext();
 
 const initialState = {
-     featuredBookings: [],
-     carouselBookings: [],
      customerBookings: [],
+     allAvailableBookings: [],
 };
 
 const StoreProvider = ({ children }) => {
