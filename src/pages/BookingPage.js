@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 
-import { DispatchContext, StateContext } from "../context/StoreProvider";
+import { DispatchContext } from "../context/StoreProvider";
 
 import { useHistory } from "react-router-dom";
 
@@ -12,36 +12,108 @@ import styled from "styled-components";
 
 import { BookExperienceButtonBlack } from "../elements/BookExperienceButton";
 
-// flex wrap to get it to lign up
-
 const PageContainer = styled.div`
-     display: flex;
-     flex-direction: row;
-     flex-wrap: wrap;
-     margin: 20px;
+     @media (max-width: 786px) {
+          display: flex;
+          flex-direction: column;
+
+          margin: 30px;
+     }
 `;
 
-const Image = styled.img`
-     // To make an image size responsive, you simply need to make sure its width displays at most 100% of its maximum width and set its display height to automatically adjust depending on display width, image width, and image height.
-     max-width: 100%;
-     height: auto;
-     //
+const ImageAndBookingWrapper = styled.div`
+     display: flex;
+     flex-direction: row;
+     margin: 30px;
+     @media (max-width: 786px) {
+          flex-direction: column;
+     }
+`;
 
-     max-height: 550px; // and add max-height so higher pictures arnt too big
-     flex-grow: 1; // to push out to the side
+const Image = styled.div`
+     background: ${(props) =>
+          `linear-gradient(
+            to bottom, rgba(0, 0, 0, 0)
+            39%, rgba(0,0,0,0)
+            41%, rgba(0,0,0,0.8)
+            100%
+        ),
+        url('${props.image}'), #1c1c1c
+        `};
+
+     background-size: cover;
+
+     width: 100%;
+     height: 550px;
+     background-repeat: no-repeat;
+
+     /*FOR FADE IN EFFECT */
+     animation: fadein 3s;
+     -moz-animation: fadein 3s; /* Firefox */
+     -webkit-animation: fadein 3s; /* Safari and Chrome */
+     -o-animation: fadein 3s; /* Opera */
+
+     // export fadein into its own element stuff
+
+     @keyframes fadein {
+          from {
+               opacity: 0;
+          }
+          to {
+               opacity: 1;
+          }
+     }
+     @-moz-keyframes fadein {
+          /* Firefox */
+          from {
+               opacity: 0;
+          }
+          to {
+               opacity: 1;
+          }
+     }
+     @-webkit-keyframes fadein {
+          /* Safari and Chrome */
+          from {
+               opacity: 0;
+          }
+          to {
+               opacity: 1;
+          }
+     }
+     @-o-keyframes fadein {
+          /* Opera */
+          from {
+               opacity: 0;
+          }
+          to {
+               opacity: 1;
+          }
+     }
 `;
 
 const BookingContainer = styled.div`
-     display: flex;
-     flex-direction: column;
+     margin-left: 20px;
 `;
 
-const BodyContainer = styled.div``;
+const Title = styled.h1`
+     flex-wrap: wrap;
+     margin-top: 0px;
+
+     @media (max-width: 786px) {
+          margin-top: 35px;
+     }
+`;
 
 const ButtonContainer = styled.div`
      display: flex;
      flex-direction: row;
      height: 40px;
+`;
+
+const SubTitle = styled.p`
+     margin-bottom: 5px;
+     margin-top: 40px;
 `;
 
 const Button = styled.button`
@@ -52,6 +124,8 @@ const Button = styled.button`
 
      height: 40px;
      width: 40px;
+
+     cursor: pointer;
 `;
 
 const NumberBox = styled.div`
@@ -64,16 +138,33 @@ const NumberBox = styled.div`
      margin-left: 10px;
 `;
 
-const Title = styled.h1`
-     flex-wrap: wrap;
+const PriceText = styled.p`
+     margin-top: 50px;
+     margin-bottom: 35px;
+     font-family: "Mulish";
+     font-style: normal;
+     font-weight: bold;
+     font-size: 14px;
+     line-height: 18px;
+
+     letter-spacing: 1.27273px;
+
+     color: #222222;
 `;
 
-const SubTitle = styled.p``;
+const BodyContainer = styled.div`
+     font-family: "Mulish";
+     font-style: normal;
+     font-weight: normal;
+     font-size: 14px;
+     line-height: 18px;
 
-// make 2 inner Content boxes put them on top of e4ach other
+     letter-spacing: 1.27273px;
 
-// Image to the left, then calculationContainer to the right
-// text at the bottom
+     color: #222222;
+
+     margin-top: 35px;
+`;
 
 export default function BookingPage(props) {
      const dispatch = useContext(DispatchContext);
@@ -131,16 +222,11 @@ export default function BookingPage(props) {
           }
      }, [adultTickets, childTickets, booking]);
 
-     // Loading Spinner Screen automaticly for StyledImages
-
      // use this react-router hook to push and go to another page
      const history = useHistory();
 
      function handleBooking() {
           // dispatch a booking to the store
-          // Gotta fix how to check how many and stuff
-
-          // Get the booking, and make a new json from it
 
           if (price) {
                const newBooking = {
@@ -167,45 +253,40 @@ export default function BookingPage(props) {
           return <p>Something went wrong...{error}</p>;
      }
 
+     let imageURL = booking.media.large ? booking.media.large.url : booking.media.small.url;
+
      return (
           <PageContainer>
-               <Image src={booking.media.small.url}></Image>
+               <ImageAndBookingWrapper>
+                    <Image image={imageURL}></Image>
 
-               <BookingContainer>
-                    <Title>{booking.title}</Title>
-                    <SubTitle>From £{booking.price.value} per person (half for children)</SubTitle>
-                    <SubTitle>Adult</SubTitle>
-                    <ButtonContainer>
-                         <Button onClick={() => handleAdultTicketNum(-1)}>-</Button>
-                         <NumberBox>{adultTickets}</NumberBox>
-                         <Button onClick={() => handleAdultTicketNum(1)}>+</Button>
-                    </ButtonContainer>
+                    <BookingContainer>
+                         <Title>{booking.title}</Title>
+                         <SubTitle>
+                              From £{booking.price.value} per person (half for children)
+                         </SubTitle>
+                         <SubTitle>Adult</SubTitle>
+                         <ButtonContainer>
+                              <Button onClick={() => handleAdultTicketNum(-1)}>-</Button>
+                              <NumberBox>{adultTickets}</NumberBox>
+                              <Button onClick={() => handleAdultTicketNum(1)}>+</Button>
+                         </ButtonContainer>
 
-                    <SubTitle>Child</SubTitle>
-                    <ButtonContainer>
-                         <Button onClick={() => handleChildTicketNum(-1)}>-</Button>
-                         <NumberBox>{childTickets}</NumberBox>
-                         <Button onClick={() => handleChildTicketNum(1)}>+</Button>
-                    </ButtonContainer>
+                         <SubTitle>Child</SubTitle>
+                         <ButtonContainer>
+                              <Button onClick={() => handleChildTicketNum(-1)}>-</Button>
+                              <NumberBox>{childTickets}</NumberBox>
+                              <Button onClick={() => handleChildTicketNum(1)}>+</Button>
+                         </ButtonContainer>
 
-                    <div>
-                         <p>Total £{price}</p>
-                    </div>
+                         <PriceText>Total £{price}</PriceText>
 
-                    <div>
                          <BookExperienceButtonBlack onClick={() => handleBooking()}>
                               Book experience
                          </BookExperienceButtonBlack>
-                    </div>
-               </BookingContainer>
-
-               <BodyContainer>
-                    <p>{booking.body}</p>
-               </BodyContainer>
+                    </BookingContainer>
+               </ImageAndBookingWrapper>
+               <BodyContainer>{booking.body}</BodyContainer>
           </PageContainer>
      );
 }
-
-/**
- *
- */

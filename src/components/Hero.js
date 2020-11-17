@@ -19,11 +19,54 @@ const HeroImage = styled.div`
      width: 100%;
      height: 550px;
      position: relative;
-     //animation: animateHeroimage 1s;
 
      display: flex;
      flex-direction: column;
      justify-content: center;
+
+     /*FOR FADE IN EFFECT */
+     animation: fadein 3s;
+     -moz-animation: fadein 3s; /* Firefox */
+     -webkit-animation: fadein 3s; /* Safari and Chrome */
+     -o-animation: fadein 3s; /* Opera */
+
+     margin-bottom: 20px;
+
+     @keyframes fadein {
+          from {
+               opacity: 0;
+          }
+          to {
+               opacity: 1;
+          }
+     }
+     @-moz-keyframes fadein {
+          /* Firefox */
+          from {
+               opacity: 0;
+          }
+          to {
+               opacity: 1;
+          }
+     }
+     @-webkit-keyframes fadein {
+          /* Safari and Chrome */
+          from {
+               opacity: 0;
+          }
+          to {
+               opacity: 1;
+          }
+     }
+     @-o-keyframes fadein {
+          /* Opera */
+          from {
+               opacity: 0;
+          }
+          to {
+               opacity: 1;
+          }
+     }
 `;
 
 const HeroInnerContent = styled.div`
@@ -40,18 +83,23 @@ const HeroTitle = styled.h1`
      font-weight: 600;
      font-size: 18px;
 
-     /* identical to box height, or 128% */
+     line-height: 23px;
      letter-spacing: 1.63636px;
 
      color: #ffffff;
+
+     font-family: "Fahkwang";
 
      flex-wrap: wrap;
 `;
 
 const HeroPrice = styled.h1`
+     font-family: "Mulish";
+
      font-style: normal;
      font-weight: normal;
      font-size: 14px;
+     line-height: 18px;
 
      /* identical to box height, or 129% */
      letter-spacing: 1.27273px;

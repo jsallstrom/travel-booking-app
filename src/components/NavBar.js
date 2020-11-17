@@ -2,16 +2,16 @@ import React from "react";
 
 import { Link } from "react-router-dom";
 
-import styled, { css } from "styled-components";
+import styled from "styled-components";
+import BookingSymbol from "./BookingSymbol";
 
 import HamburgerMenuNavbar from "./mobile/HamburgerMenuNavbar";
 
 const StyledNavbar = styled.nav`
      display: flex;
      flex-direction: row;
-     padding: 20px;
+     height: 80px;
      align-items: center;
-     margin-bottom: 10px;
 
      background: #ffffff;
 
@@ -22,8 +22,9 @@ const StyledNavbar = styled.nav`
 
 const NavBrand = styled(Link)`
      flex-grow: 1;
-     font-size: 24px;
-     font-weight: 700;
+
+     margin-left: 40px;
+
      color: black;
      text-decoration: none;
 
@@ -32,8 +33,9 @@ const NavBrand = styled(Link)`
      font-size: 18px;
      line-height: 23px;
 
-     /* identical to box height, or 128% */
      letter-spacing: 1.63636px;
+
+     z-index: 12;
 
      color: #222222;
 `;
@@ -44,8 +46,10 @@ const NavItems = styled.ul`
      display: flex;
      align-items: center;
 
+     margin-right: 20px;
+
      @media (max-width: 786px) {
-          opacity: 0;
+          display: none; // make em dissapear when small enough
      }
 `;
 
@@ -76,6 +80,7 @@ export default function NavBar() {
                     <NavLink to="/experiences">Experiences</NavLink>
                     <NavLink to="/company">Company</NavLink>
                     <NavLink to="/support">Support</NavLink>
+                    <BookingSymbol></BookingSymbol>
                </NavItems>
                <HamburgerMenuNavbar></HamburgerMenuNavbar>
           </StyledNavbar>

@@ -1,8 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
-
-import { DispatchContext, StateContext } from "../context/StoreProvider";
-
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 
 import Hero from "../components/Hero";
 
@@ -10,17 +6,15 @@ import { Spinner } from "../components/Spinner";
 
 import Carousel from "../components/Carousel";
 
-import HamburgerMenuNavbar from "../components/mobile/HamburgerMenuNavbar";
-
 import Post from "../components/Post";
 
 import axios from "axios";
 
-// 1) Make Posts, Posts Container
-// 2) Insert carousel and featured bookings into Hero, posts and carousel and make the buttons work
-// 3) Make that weird little bookings image
-// 4) Make image animate in for smoother transition
-// 5) Get rid of the frame
+// 1)
+// 2)
+// 3) Check and take away all console.logs
+// 4) Final calm look, then send in
+// 5) Send in
 
 import styled from "styled-components";
 
@@ -34,19 +28,17 @@ const PostsContainer = styled.div`
 `;
 
 export default function HomePage() {
-     const dispatch = useContext(DispatchContext);
-     const state = useContext(StateContext);
-
      const [isLoading, setIsLoading] = useState(true);
      const [error, setError] = useState("");
 
      const [featuredBookings, setFeaturedBookings] = useState([]);
-     const [carouselBookings, setCarouselBookings] = useState();
+     const [carouselBookings, setCarouselBookings] = useState([]);
 
      const fetchData = async () => {
-          /** Cross-Origin begäran blockerad: Same-Origin policyn tillåter inte läsningar av
-           *  fjärresurs på https://webdev-exercise.netlify.app/data/products.json.
-           *  (Orsak: CORS header 'Access-Control-Allow-Origin' saknas).
+          /**
+           * Would have preffered to access products.json through the given website but
+           * CORS header 'Access-Control-Allow-Origin' was missing, I had to add products.json in /public
+           *
            */
 
           try {
@@ -56,8 +48,6 @@ export default function HomePage() {
 
                setFeaturedBookings(data.featured);
                setCarouselBookings(data.carousel.items);
-
-               console.log(data);
           } catch (error) {
                setError(error.message);
           } finally {
@@ -76,8 +66,6 @@ export default function HomePage() {
      if (error) {
           return <p>Something went wrong...{error}</p>;
      }
-
-     console.log(carouselBookings);
 
      return (
           <div>
@@ -106,7 +94,7 @@ export default function HomePage() {
                     ></Post>
                </PostsContainer>
 
-               <Carousel bookings={carouselBookings}></Carousel>
+               <Carousel bookings={[...carouselBookings, ...carouselBookings]}></Carousel>
           </div>
      );
 }

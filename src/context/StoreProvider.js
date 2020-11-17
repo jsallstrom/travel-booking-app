@@ -7,7 +7,6 @@ export const DispatchContext = createContext();
 
 const initialState = {
      customerBookings: [],
-     allAvailableBookings: [],
 };
 
 const StoreProvider = ({ children }) => {

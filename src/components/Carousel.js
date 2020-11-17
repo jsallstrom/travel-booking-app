@@ -44,8 +44,6 @@ const CardsContainer = styled.div`
 `;
 
 export default function Carousel({ bookings }) {
-     console.log(bookings);
-
      return (
           <CarouselContainer>
                <CarouselTitle>Adventure awaits out there</CarouselTitle>

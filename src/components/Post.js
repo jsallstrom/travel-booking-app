@@ -4,17 +4,14 @@ import styled from "styled-components";
 
 import { BookExperienceButtonBlack } from "../elements/BookExperienceButton";
 
-// Make 2 posts, porps take image, price and title and body
-
 const PostContainer = styled.div`
-     min-width: 335px;
-
-     /**
-     word-wrap: break-word;
-     overflow: hidden;
-      */
+     min-width: 300px;
 
      margin: 10px;
+
+     @media (max-width: 786px) {
+          margin: 20px;
+     }
 `;
 
 const PostImage = styled.div`
@@ -32,26 +29,103 @@ const PostImage = styled.div`
      width: 100%;
      height: 550px;
      position: relative;
-     //animation: animateHeroimage 1s;
 
      display: flex;
      flex-direction: column;
 
      justify-content: end; // Make PostTitle inside be at the bottom
+
+     @media (max-width: 786px) {
+          height: 335px;
+     }
+
+     /*FOR FADE IN EFFECT */
+     animation: fadein 3s;
+     -moz-animation: fadein 3s; /* Firefox */
+     -webkit-animation: fadein 3s; /* Safari and Chrome */
+     -o-animation: fadein 3s; /* Opera */
+
+     @keyframes fadein {
+          from {
+               opacity: 0;
+          }
+          to {
+               opacity: 1;
+          }
+     }
+     @-moz-keyframes fadein {
+          /* Firefox */
+          from {
+               opacity: 0;
+          }
+          to {
+               opacity: 1;
+          }
+     }
+     @-webkit-keyframes fadein {
+          /* Safari and Chrome */
+          from {
+               opacity: 0;
+          }
+          to {
+               opacity: 1;
+          }
+     }
+     @-o-keyframes fadein {
+          /* Opera */
+          from {
+               opacity: 0;
+          }
+          to {
+               opacity: 1;
+          }
+     }
 `;
+
 const PostTitle = styled.h1`
      margin: 30px;
      color: white;
-`;
 
-const LowerInnerContainer = styled.div``;
+     font-family: "Fahkwang";
+
+     @media (max-width: 786px) {
+          font-style: normal;
+          font-weight: bold;
+          font-size: 18px;
+          line-height: 23px;
+     }
+`;
 
 const PostBody = styled.p`
      //  white-space: pre; makes each sentence a new line
      overflow-wrap: break-word;
+     font-family: "Mulish";
+
+     font-style: normal;
+     font-weight: normal;
+     font-size: 14px;
+     line-height: 18px;
+
+     letter-spacing: 1.27273px;
+
+     color: #222222;
+
+     margin-top: 20px;
+     margin-bottom: 20px;
 `;
 
-const PriceText = styled.h2``;
+const PriceText = styled.h2`
+     font-family: "Mulish";
+     font-size: 14px;
+     line-height: 18px;
+
+     letter-spacing: 1.27273px;
+
+     color: #000000;
+
+     margin-top: 20px;
+     margin-bottom: 20px;
+`;
 
 export default function Post({ id, image, title, price, body }) {
      return (
@@ -60,15 +134,13 @@ export default function Post({ id, image, title, price, body }) {
                     <PostTitle>{title}</PostTitle>
                </PostImage>
 
-               <LowerInnerContainer>
-                    <PostBody>{body}</PostBody>
+               <PostBody>{body}</PostBody>
 
-                    <PriceText>From £{price} per person</PriceText>
+               <PriceText>From £{price} per person</PriceText>
 
-                    <BookExperienceButtonBlack to={`/book/${id}`}>
-                         Book Experience
-                    </BookExperienceButtonBlack>
-               </LowerInnerContainer>
+               <BookExperienceButtonBlack to={`/book/${id}`}>
+                    Book Experience
+               </BookExperienceButtonBlack>
           </PostContainer>
      );
 }

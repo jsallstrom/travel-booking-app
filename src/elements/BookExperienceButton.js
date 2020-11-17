@@ -20,7 +20,7 @@ export const BookExperienceButtonBlack = styled(Link)`
      padding-top: 17px;
      padding-bottom: 17px;
 
-     margin: 30px;
+     font-family: "Fahkwang";
 `;
 
 export const BookExperienceButtonWhite = styled(Link)`
@@ -41,31 +41,5 @@ export const BookExperienceButtonWhite = styled(Link)`
      padding-top: 17px;
      padding-bottom: 17px;
 
-     margin: 30px;
-`;
-
-const BookExperienceButton2 = styled.button`
-     border: none;
-     width: 200px;
-
-     text-align: center;
-     text-decoration: none;
-     display: inline-block;
-
-     background: #ffffff;
-     padding-left: 30px;
-     padding-right: 30px;
-     padding-top: 17px;
-     padding-bottom: 17px;
-
-     font-style: normal;
-     font-weight: 600;
-     font-size: 14px;
-     line-height: 18px;
-
-     /* identical to box height, or 129% */
-     text-align: center;
-     letter-spacing: 1.27273px;
-
-     color: #000000;
+     font-family: "Fahkwang";
 `;

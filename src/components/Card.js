@@ -34,6 +34,48 @@ const CardImage = styled.div`
      max-height: 100%;
 
      position: relative;
+
+     /*FOR FADE IN EFFECT */
+     animation: fadein 3s;
+     -moz-animation: fadein 3s; /* Firefox */
+     -webkit-animation: fadein 3s; /* Safari and Chrome */
+     -o-animation: fadein 3s; /* Opera */
+
+     @keyframes fadein {
+          from {
+               opacity: 0;
+          }
+          to {
+               opacity: 1;
+          }
+     }
+     @-moz-keyframes fadein {
+          /* Firefox */
+          from {
+               opacity: 0;
+          }
+          to {
+               opacity: 1;
+          }
+     }
+     @-webkit-keyframes fadein {
+          /* Safari and Chrome */
+          from {
+               opacity: 0;
+          }
+          to {
+               opacity: 1;
+          }
+     }
+     @-o-keyframes fadein {
+          /* Opera */
+          from {
+               opacity: 0;
+          }
+          to {
+               opacity: 1;
+          }
+     }
 `;
 
 const CardTitle = styled.h1`
@@ -48,6 +90,8 @@ const CardTitle = styled.h1`
      margin-left: 30px;
      margin-right: 30px;
      margin-top: 35px;
+
+     font-family: "Fahkwang";
 `;
 
 const CardPrice = styled.h2`
@@ -62,6 +106,8 @@ const CardPrice = styled.h2`
      color: #ffffff;
      padding-left: 30px;
      padding-right: 30px;
+
+     font-family: "Mulish";
 `;
 
 export default function Card({ id, image, title, price, guidedTour }) {
@@ -74,7 +120,8 @@ export default function Card({ id, image, title, price, guidedTour }) {
                <CardImage image={image}></CardImage>
                <CardTitle>{title}</CardTitle>
                <CardPrice>{priceText}</CardPrice>
-               <BookExperienceButtonWhite to={`/book/${id}`}>
+
+               <BookExperienceButtonWhite to={`/book/${id}`} style={{ margin: "30px" }}>
                     Book Experience
                </BookExperienceButtonWhite>
           </CardContainer>

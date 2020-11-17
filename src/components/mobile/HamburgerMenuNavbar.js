@@ -9,9 +9,10 @@ import { useHistory } from "react-router-dom";
 const HamburgerMenuContainer = styled.nav`
      display: flex;
      align-items: center;
+     margin-right: 40px;
 
      @media (min-width: 786px) {
-          opacity: 0;
+          display: none;
      }
 `;
 

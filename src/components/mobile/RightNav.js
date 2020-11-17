@@ -3,26 +3,48 @@ import styled from "styled-components";
 
 import { Link } from "react-router-dom";
 
-const Ul = styled.ul`
-     li {
-          padding-top: 25px;
-          padding-bottom: 25px;
-          color: black;
-          list-style: none;
-          border-bottom: grey solid 1px;
-     }
+import BookingSymbol from "../BookingSymbol";
 
-     flex-flow: column;
-
+const SideNavBar = styled.nav`
      background-color: white;
      position: fixed;
      transform: ${({ isOpen }) => (isOpen ? "translateX(0)" : "translateX(100%)")};
      top: 0;
      right: 0;
      height: 100vh;
-     width: 300px;
-     padding-top: 3.5rem;
+     width: 100%;
+
      transition: transform 0.3s ease-in-out;
+
+     display: flex;
+     flex-direction: column;
+
+     justify-content: center;
+`;
+
+const NavItems = styled.ul`
+     list-style: none;
+
+     display: flex;
+     flex-direction: column;
+     margin-right: 30px;
+`;
+
+const NavLink = styled(Link)`
+     padding-top: 25px;
+     padding-bottom: 25px;
+     color: black;
+     list-style: none;
+     border-bottom: grey solid 1px;
+     text-decoration: none;
+`;
+
+const Container = styled.div`
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+
+     justify-content: space-between;
 `;
 
 // 1) https://levelup.gitconnected.com/how-to-create-a-responsive-hamburger-navigation-menu-reactjs-and-styled-components-59ce167ed543
@@ -31,12 +53,21 @@ const Ul = styled.ul`
 
 const RightNav = ({ isOpen }) => {
      return (
-          <Ul isOpen={isOpen}>
-               <Link to="/experiences">Experiences</Link>
-               <Link to="/company">Company</Link>
-               <Link to="/support">Support</Link>
-               <Link to="/bookings">Bookings</Link>
-          </Ul>
+          <SideNavBar isOpen={isOpen}>
+               <NavItems>
+                    <NavLink to="/experiences">Experiences</NavLink>
+                    <NavLink to="/company">Company</NavLink>
+                    <NavLink to="/support">Support</NavLink>
+
+                    <Container>
+                         <NavLink to="/bookings" style={{ borderBottom: "none" }}>
+                              Bookings
+                         </NavLink>
+
+                         <BookingSymbol></BookingSymbol>
+                    </Container>
+               </NavItems>
+          </SideNavBar>
      );
 };
 
