@@ -36,12 +36,11 @@ const Image = styled.div`
         url('${image}')
         `};
 
-     background-size: 100%, cover;
+     background-size: cover;
      background-position: center, center;
 
      width: 100%;
      height: 550px;
-     background-repeat: no-repeat;
 
      /*FOR FADE IN EFFECT */
      animation: fadein 3s;
