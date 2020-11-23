@@ -5,44 +5,15 @@ import styled from "styled-components";
 
 import { StateContext } from "../context/StoreProvider";
 
+import BasketImageEmpty from "../images/Basket(empty).png";
+import BasketImageFilled from "../images/Basket(filled).png";
+
+// Import the png file exported from Figma
+
 const SymbalContainer = styled(Link)`
      position: relative;
      height: 23px;
      width: 20px;
-`;
-
-const TopCircle = styled.div`
-     position: absolute;
-     left: 31.58%;
-     right: 31.58%;
-     top: 0%;
-     bottom: 82.61%;
-     border: 1px solid #000000;
-     border-radius: 100px;
-`;
-
-const Rectangle = styled.div`
-     position: absolute;
-     left: 0%;
-     right: 0%;
-     top: 17.39%;
-     bottom: 0%;
-
-     border: 1px solid #000000;
-     box-sizing: border-box;
-     border-radius: 5px;
-`;
-
-const Oval = styled.i`
-     position: absolute;
-     left: 31.58%;
-     right: 31.58%;
-     top: 43.48%;
-     bottom: 26.09%;
-
-     border-radius: 100px;
-
-     background: ${({ hasBookings }) => (hasBookings ? "#fc7c3a" : "white")};
 `;
 
 export default function BookingSymbol() {
@@ -59,10 +30,7 @@ export default function BookingSymbol() {
 
      return (
           <SymbalContainer to={"/bookings"}>
-               <TopCircle></TopCircle>
-               <Rectangle>
-                    <Oval hasBookings={hasBookings} />
-               </Rectangle>
+               {hasBookings ? <img src={BasketImageFilled} /> : <img src={BasketImageEmpty} />}
           </SymbalContainer>
      );
 }

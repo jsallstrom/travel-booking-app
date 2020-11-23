@@ -10,38 +10,34 @@ import axios from "axios";
 
 import styled from "styled-components";
 
-import { BookExperienceButtonBlack } from "../elements/BookExperienceButton";
+import { BookExperienceButton } from "../elements/BookExperienceButton";
 
 const PageContainer = styled.div`
      @media (max-width: 786px) {
           display: flex;
           flex-direction: column;
-
-          margin: 30px;
      }
 `;
 
 const ImageAndBookingWrapper = styled.div`
      display: flex;
      flex-direction: row;
-     margin: 30px;
+     margin: 0px 30px 30px;
      @media (max-width: 786px) {
           flex-direction: column;
+          width: 100%;
+          margin: 0px;
      }
 `;
 
 const Image = styled.div`
-     background: ${(props) =>
-          `linear-gradient(
-            to bottom, rgba(0, 0, 0, 0)
-            39%, rgba(0,0,0,0)
-            41%, rgba(0,0,0,0.8)
-            100%
-        ),
-        url('${props.image}'), #1c1c1c
+     background: ${({ image }) =>
+          `
+        url('${image}')
         `};
 
-     background-size: cover;
+     background-size: 100%, cover;
+     background-position: center, center;
 
      width: 100%;
      height: 550px;
@@ -49,9 +45,10 @@ const Image = styled.div`
 
      /*FOR FADE IN EFFECT */
      animation: fadein 3s;
-     -moz-animation: fadein 3s; /* Firefox */
-     -webkit-animation: fadein 3s; /* Safari and Chrome */
-     -o-animation: fadein 3s; /* Opera */
+
+     @media (max-width: 786px) {
+          height: 375px;
+     }
 
      // export fadein into its own element stuff
 
@@ -63,37 +60,10 @@ const Image = styled.div`
                opacity: 1;
           }
      }
-     @-moz-keyframes fadein {
-          /* Firefox */
-          from {
-               opacity: 0;
-          }
-          to {
-               opacity: 1;
-          }
-     }
-     @-webkit-keyframes fadein {
-          /* Safari and Chrome */
-          from {
-               opacity: 0;
-          }
-          to {
-               opacity: 1;
-          }
-     }
-     @-o-keyframes fadein {
-          /* Opera */
-          from {
-               opacity: 0;
-          }
-          to {
-               opacity: 1;
-          }
-     }
 `;
 
 const BookingContainer = styled.div`
-     margin-left: 20px;
+     margin: 0px 20px 20px;
 `;
 
 const Title = styled.h1`
@@ -140,7 +110,7 @@ const NumberBox = styled.div`
 
 const PriceText = styled.p`
      margin-top: 50px;
-     margin-bottom: 35px;
+     margin-bottom: 25px;
      font-family: "Mulish";
      font-style: normal;
      font-weight: bold;
@@ -163,7 +133,7 @@ const BodyContainer = styled.div`
 
      color: #222222;
 
-     margin-top: 35px;
+     margin: 30px;
 `;
 
 export default function BookingPage(props) {
@@ -185,7 +155,7 @@ export default function BookingPage(props) {
 
      const fetchData = async () => {
           try {
-               const response = await axios.get("../products.json"); // ../because we are in /pages
+               const response = await axios.get("../products.json");
 
                const data = response.data;
 
@@ -231,6 +201,7 @@ export default function BookingPage(props) {
           if (price) {
                const newBooking = {
                     experienceId: booking.id,
+                    title: booking.title,
                     adultTickets: adultTickets,
                     childTickets: childTickets,
                     totalPrice: price,
@@ -281,9 +252,9 @@ export default function BookingPage(props) {
 
                          <PriceText>Total £{price}</PriceText>
 
-                         <BookExperienceButtonBlack onClick={() => handleBooking()}>
+                         <BookExperienceButton onClick={() => handleBooking()}>
                               Book experience
-                         </BookExperienceButtonBlack>
+                         </BookExperienceButton>
                     </BookingContainer>
                </ImageAndBookingWrapper>
                <BodyContainer>{booking.body}</BodyContainer>

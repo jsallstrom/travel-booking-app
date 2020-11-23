@@ -2,33 +2,29 @@ import React from "react";
 
 import styled from "styled-components";
 
-import { BookExperienceButtonBlack } from "../elements/BookExperienceButton";
+import { BookExperienceButton } from "../elements/BookExperienceButton";
 
 const PostContainer = styled.div`
      min-width: 300px;
 
-     margin: 10px;
+     margin-left: 10px;
+     margin-right: 10px;
 
-     @media (max-width: 786px) {
-          margin: 20px;
-     }
+     margin-bottom: 40px;
 `;
 
 const PostImage = styled.div`
-     background: ${(props) =>
-          `linear-gradient(
-            to bottom, rgba(0, 0, 0, 0)
-            39%, rgba(0,0,0,0)
-            41%, rgba(0,0,0,0.8)
-            100%
-        ),
-        url('${props.image}'), #1c1c1c
+     background: ${({ image }) =>
+          `
+        url('${image}'), #1c1c1c
         `};
-     background-size: 100%, cover;
+     background-size: cover;
      background-position: center, center;
      width: 100%;
      height: 550px;
      position: relative;
+
+     // background-repeat: no-repeat;
 
      display: flex;
      flex-direction: column;
@@ -41,38 +37,8 @@ const PostImage = styled.div`
 
      /*FOR FADE IN EFFECT */
      animation: fadein 3s;
-     -moz-animation: fadein 3s; /* Firefox */
-     -webkit-animation: fadein 3s; /* Safari and Chrome */
-     -o-animation: fadein 3s; /* Opera */
 
      @keyframes fadein {
-          from {
-               opacity: 0;
-          }
-          to {
-               opacity: 1;
-          }
-     }
-     @-moz-keyframes fadein {
-          /* Firefox */
-          from {
-               opacity: 0;
-          }
-          to {
-               opacity: 1;
-          }
-     }
-     @-webkit-keyframes fadein {
-          /* Safari and Chrome */
-          from {
-               opacity: 0;
-          }
-          to {
-               opacity: 1;
-          }
-     }
-     @-o-keyframes fadein {
-          /* Opera */
           from {
                opacity: 0;
           }
@@ -93,6 +59,12 @@ const PostTitle = styled.h1`
           font-weight: bold;
           font-size: 18px;
           line-height: 23px;
+     }
+`;
+
+const TextContainer = styled.div`
+     @media (max-width: 786px) {
+          margin: 25px;
      }
 `;
 
@@ -127,6 +99,9 @@ const PriceText = styled.h2`
      margin-bottom: 20px;
 `;
 
+// make BookExperienceButton smarter, can say what colour you want + make sure it streatches when
+// screen is small enough
+
 export default function Post({ id, image, title, price, body }) {
      return (
           <PostContainer>
@@ -134,13 +109,13 @@ export default function Post({ id, image, title, price, body }) {
                     <PostTitle>{title}</PostTitle>
                </PostImage>
 
-               <PostBody>{body}</PostBody>
+               <TextContainer>
+                    <PostBody>{body}</PostBody>
 
-               <PriceText>From £{price} per person</PriceText>
+                    <PriceText>From £{price} per person</PriceText>
+               </TextContainer>
 
-               <BookExperienceButtonBlack to={`/book/${id}`}>
-                    Book Experience
-               </BookExperienceButtonBlack>
+               <BookExperienceButton to={`/book/${id}`}>Book Experience</BookExperienceButton>
           </PostContainer>
      );
 }

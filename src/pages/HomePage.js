@@ -12,9 +12,8 @@ import axios from "axios";
 
 // 1)
 // 2)
-// 3) Check and take away all console.logs
-// 4) Final calm look, then send in
-// 5) Send in
+// 3) Finally make the experience Page
+// 4) Make the userBooking Page
 
 import styled from "styled-components";
 
@@ -22,7 +21,11 @@ const PostsContainer = styled.div`
      display: flex;
      flex-direction: row;
 
+     margin: 0px 30px 0px;
+
      @media (max-width: 786px) {
+          margin: 40px 20px 40px;
+
           flex-direction: column;
      }
 `;
@@ -98,10 +101,3 @@ export default function HomePage() {
           </div>
      );
 }
-
-/**
- *
- *
- *
- *
- */

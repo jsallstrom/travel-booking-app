@@ -2,9 +2,7 @@ import React from "react";
 
 import styled from "styled-components";
 
-// make CardButton a Link
-
-import { BookExperienceButtonWhite } from "../elements/BookExperienceButton";
+import { BookExperienceButton } from "../elements/BookExperienceButton";
 
 const CardContainer = styled.div`
      display: flex;
@@ -13,16 +11,14 @@ const CardContainer = styled.div`
      max-width: 0;
      word-wrap: break-word;
      overflow: hidden;
-
      background: #000000;
-
      margin: 10px;
 `;
 
 const CardImage = styled.div`
-     background: ${(props) =>
+     background: ${({ image }) =>
           `
-        url('${props.image}'), #1c1c1c
+        url('${image}'), #1c1c1c
         `};
 
      background-size: 100%, cover;
@@ -37,38 +33,8 @@ const CardImage = styled.div`
 
      /*FOR FADE IN EFFECT */
      animation: fadein 3s;
-     -moz-animation: fadein 3s; /* Firefox */
-     -webkit-animation: fadein 3s; /* Safari and Chrome */
-     -o-animation: fadein 3s; /* Opera */
 
      @keyframes fadein {
-          from {
-               opacity: 0;
-          }
-          to {
-               opacity: 1;
-          }
-     }
-     @-moz-keyframes fadein {
-          /* Firefox */
-          from {
-               opacity: 0;
-          }
-          to {
-               opacity: 1;
-          }
-     }
-     @-webkit-keyframes fadein {
-          /* Safari and Chrome */
-          from {
-               opacity: 0;
-          }
-          to {
-               opacity: 1;
-          }
-     }
-     @-o-keyframes fadein {
-          /* Opera */
           from {
                opacity: 0;
           }
@@ -121,9 +87,9 @@ export default function Card({ id, image, title, price, guidedTour }) {
                <CardTitle>{title}</CardTitle>
                <CardPrice>{priceText}</CardPrice>
 
-               <BookExperienceButtonWhite to={`/book/${id}`} style={{ margin: "30px" }}>
+               <BookExperienceButton isCardButton={true} color="white" to={`/book/${id}`}>
                     Book Experience
-               </BookExperienceButtonWhite>
+               </BookExperienceButton>
           </CardContainer>
      );
 }

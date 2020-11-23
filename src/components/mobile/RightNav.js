@@ -39,10 +39,11 @@ const NavLink = styled(Link)`
      text-decoration: none;
 `;
 
-const Container = styled.div`
+const Container = styled(Link)`
      display: flex;
      flex-direction: row;
      align-items: center;
+     text-decoration: none;
 
      justify-content: space-between;
 `;
@@ -59,11 +60,8 @@ const RightNav = ({ isOpen }) => {
                     <NavLink to="/company">Company</NavLink>
                     <NavLink to="/support">Support</NavLink>
 
-                    <Container>
-                         <NavLink to="/bookings" style={{ borderBottom: "none" }}>
-                              Bookings
-                         </NavLink>
-
+                    <Container to="/bookings">
+                         <NavLink style={{ borderBottom: "none" }}>Bookings</NavLink>
                          <BookingSymbol></BookingSymbol>
                     </Container>
                </NavItems>

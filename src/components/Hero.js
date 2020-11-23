@@ -2,23 +2,21 @@ import React from "react";
 
 import styled from "styled-components";
 
-import { BookExperienceButtonWhite } from "../elements/BookExperienceButton";
+import { BookExperienceButton } from "../elements/BookExperienceButton";
+
+const HeroContainer = styled.div``;
 
 const HeroImage = styled.div`
-     background: ${(props) =>
-          `linear-gradient(
-            to bottom, rgba(0, 0, 0, 0)
-            39%, rgba(0,0,0,0)
-            41%, rgba(0,0,0,0.8)
-            100%
-        ),
-        url('${props.image}'), #1c1c1c
+     background: ${({ image }) =>
+          `
+        url('${image}')
         `};
-     background-size: 100%, cover;
+
+     background-size: cover;
      background-position: center, center;
+
      width: 100%;
      height: 550px;
-     position: relative;
 
      display: flex;
      flex-direction: column;
@@ -26,40 +24,10 @@ const HeroImage = styled.div`
 
      /*FOR FADE IN EFFECT */
      animation: fadein 3s;
-     -moz-animation: fadein 3s; /* Firefox */
-     -webkit-animation: fadein 3s; /* Safari and Chrome */
-     -o-animation: fadein 3s; /* Opera */
 
      margin-bottom: 20px;
 
      @keyframes fadein {
-          from {
-               opacity: 0;
-          }
-          to {
-               opacity: 1;
-          }
-     }
-     @-moz-keyframes fadein {
-          /* Firefox */
-          from {
-               opacity: 0;
-          }
-          to {
-               opacity: 1;
-          }
-     }
-     @-webkit-keyframes fadein {
-          /* Safari and Chrome */
-          from {
-               opacity: 0;
-          }
-          to {
-               opacity: 1;
-          }
-     }
-     @-o-keyframes fadein {
-          /* Opera */
           from {
                opacity: 0;
           }
@@ -119,12 +87,13 @@ export default function Hero({ id, image, title, price }) {
 
                     <HeroPrice>from £{price} per person</HeroPrice>
 
-                    <BookExperienceButtonWhite
+                    <BookExperienceButton
+                         color="white"
                          to={`/book/${id}`}
                          style={{ width: "200px", margin: "0px" }}
                     >
                          Book Experience
-                    </BookExperienceButtonWhite>
+                    </BookExperienceButton>
                </HeroInnerContent>
           </HeroImage>
      );
