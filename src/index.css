@@ -13,3 +13,12 @@ body {
 code {
      font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
+
+/* These two are to not make the scrollobar pop out, now its always there */
+html {
+     overflow: scroll;
+}
+::-webkit-scrollbar {
+     width: 0px;
+     background: transparent; /* make scrollbar transparent */
+}

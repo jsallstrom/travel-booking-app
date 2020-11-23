@@ -7,6 +7,13 @@ export default (state, action) => {
                };
           }
 
+          case "CLEAR_EXPERIENCES": {
+               return {
+                    ...state,
+                    customerBookings: [],
+               };
+          }
+
           default:
                throw new Error("Bad Action Type");
      }
