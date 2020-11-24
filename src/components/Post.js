@@ -99,9 +99,6 @@ const PriceText = styled.h2`
      margin-bottom: 20px;
 `;
 
-// make BookExperienceButton smarter, can say what colour you want + make sure it streatches when
-// screen is small enough
-
 export default function Post({ id, image, title, price, body }) {
      return (
           <PostContainer>

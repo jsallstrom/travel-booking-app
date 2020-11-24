@@ -63,14 +63,6 @@ const NavLink = styled(Link)`
      border: none;
 `;
 
-/**
- * Import HamburgerMenu
- * NavItems shall go invisable when under 786px or something
- * Then HamburgerMenu shall arise
- *
- *
- */
-
 export default function NavBar() {
      return (
           <StyledNavbar>
