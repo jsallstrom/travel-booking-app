@@ -48,10 +48,6 @@ const Container = styled(Link)`
      justify-content: space-between;
 `;
 
-// 1) https://levelup.gitconnected.com/how-to-create-a-responsive-hamburger-navigation-menu-reactjs-and-styled-components-59ce167ed543
-// 2) links should be in the middle, white background,
-// 3) make li into links
-
 const RightNav = ({ isOpen }) => {
      return (
           <SideNavBar isOpen={isOpen}>
